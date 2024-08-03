@@ -1,60 +1,3 @@
-<?php
-session_start();
-require 'config.php';
-?>
-
-<?php
-
-// Funktion til at hente serverstatus og antal spillere
-function getServerStatus($cfxLink) {
-    // URL til FiveM API'en
-    $url = "https://servers-frontend.fivem.net/api/servers/single/$cfxLink/";
-
-    
-    $ch = curl_init($url);
-
-    
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); 
-    curl_setopt($ch, CURLOPT_MAXREDIRS, 5); 
-
-    
-    curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
-
-    
-    $response = curl_exec($ch);
-
-    
-    if ($response === false) {
-        echo "cURL Fejl: " . curl_error($ch);
-        exit;
-    }
-
-    
-    curl_close($ch);
-
-
-    
-    $data = json_decode($response, true);
-
-
-
-
-    
-    return [
-        'status' => isset($data['Data']['hostname']) ? 'Online' : 'Offline',
-        'players' => isset($data['Data']['clients']) ? $data['Data']['clients'] : 0,
-    ];
-}
-
-
-$cfxLink = 'yegaqm';
-
-
-$status = getServerStatus($cfxLink);
-
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -113,7 +56,7 @@ $status = getServerStatus($cfxLink);
 
         <p class="text-3xl font-normal text-center ">
             Online <br>
-            <span class="font-normal text-gray-200 text-2xl"><?php echo $status['players'] ?>/128</span>
+            <span class="font-normal text-gray-200 text-2xl">87/128</span>
         </p>
         </div>
     </div>
