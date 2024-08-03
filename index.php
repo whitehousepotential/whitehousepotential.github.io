@@ -1,6 +1,7 @@
 <?php
 session_start();
 require 'config.php';
+include('alert.php');
 ?>
 
 <?php
@@ -62,61 +63,39 @@ $status = getServerStatus($cfxLink);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zonix Roleplay</title>
+    <title>WHP Dashboard</title>
     <link rel="shortcut icon" href="logo.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="sstylesheet" href="style.css">
 
 
 
     
 </head>
+<script>
+    // Send en anmodning til besoegslog.php, når siden indlæses
+    fetch('track.php')
+        .then(response => console.log('Du er blevet registreret i vores database'))
+        .catch(error => console.error('Fejl ved registrering af besøg:', error));
+</script>
 
-<body class="flex flex-col h-screen">
+<body class="bg-gray-800 flex flex-col h-screen">
 
     <?php include('nav.php'); ?>
+
+
+
+
+
 
     <div class="md:flex justify-center  md:mx-24 items-center h-full">
 
 
 
         
-        <div class="mx-auto my-auto max-w-lg bg-gray-900 bg-opacity-90 text-white rounded-lg overflow-hidden shadowd-lg">
-    <img src="logo.png" class="w-64 h-64 object-cover mx-auto">
-
-    <div class="p-6">
-        <div class="mb-4 text-center">
-            <h1 class="text-4xl font-bold mb-2">Velkommen til Zonix</h1>
-            <h2 class="text-lg text-gray-300">discord.gg/zonix</h2>
-        </div>
-
-        <div class="grid grid-cols-2 gap-4">
-            <div class="bg-gray-800 text-white p-4 rounded">
-                <p class="font-bold text-lg uppercase">Seriøst</p>
-                <p class="text-sm">Vores server tager udgangspunkt i realistisk & seriøst RP.</p>
-            </div>
-            <div class="bg-gray-600 bg-opacity-80 text-white p-4 rounded">
-                <p class="font-bold text-lg uppercase">Aldersgrænse</p>
-                <p class="text-sm">Vi har valgt at sætte en aldergrænse på minmium 15 år.</p>
-            </div>
-            <div class="bg-gray-600 bg-opacity-80 text-white p-4 rounded">
-                <p class="font-bold text-lg uppercase">Hurtig Support</p>
-                <p class="text-sm">Vi bestræber os på hurtigt support. Skriftligt & mundtligt.</p>
-            </div>
-            <div class="bg-gray-800 text-white p-4 rounded">
-                <p class="font-bold text-lg uppercase">Allowlist</p>
-                <p class="text-sm">Ansøgning & samtale er påkrævet, for at kunne spille på zonix.</p>
-            </div>
-        </div>
-
-        <div class="bg-green-600 my-4 py-4 shadowd-lg rounded">
-
-        <p class="text-3xl font-normal text-center ">
-            Online <br>
-            <span class="font-normal text-gray-200 text-2xl"><?php echo $status['players'] ?>/128</span>
-        </p>
-        </div>
-    </div>
+        <div class="mx-auto w-96 px-8 py-5 my-auto max-w-6xl bg-gray-900 bg-opacity-90 text-white rounded-lg border border-gray-700 overflow-hidden shadowd-lg">
+<h1 class="text-2xl my-4 font-semibold text-center">Online Players <?php echo $status['players'] ?>/128</h1>
+<button onclick='statusConnecting()' class="bg-gray-800 w-full mt-4 text-gray-300 py-3 rounded-lg font-semibold">Connect to server</button>
 </div>
 
         
