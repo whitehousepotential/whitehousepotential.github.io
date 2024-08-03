@@ -2,17 +2,7 @@
   <div class="container mx-auto px-4 flex items-center justify-between">
     <div class="text-white font-bold text-2xl flex items-center">
       <a href="index.php">
-        <?php
-        if (isset($_SESSION['user_id'])) {
-          // Hent brugerdata og vis brugerens avatar og brugernavn
-          $userData = getUserData($_SESSION['user_id']);
-          echo '<div class="flex"><img class="h-14 w-14 flex rounded-full mr-4 " src="https://cdn.discordapp.com/avatars/' . $_SESSION['user_id'] . '/' . $userData['avatar'] . '.png" alt="">';
-          echo '<span class="items-center md:text-xl text-base my-auto uppercase">' . $userData['username'] . '</span></div>';
-        } else {
-          // Hvis brugeren ikke er logget ind, vis det statiske logo
-          echo '<img class="h-14 w-14 flex" src="logo.png" alt="Logo">';
-        }
-        ?>
+       <img class="h-14 w-14 flex" src="logo.png" alt="Logo">
       </a>
     </div>
     
